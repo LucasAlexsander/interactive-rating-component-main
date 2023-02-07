@@ -1,0 +1,259 @@
+/* Importando a fonte */
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+
+/* Cores */
+:root {
+    --orange: hsl(25, 97%, 53%);
+    --white: hsl(0, 0%, 100%);
+    --lightGrey: hsl(217, 12%, 63%);
+    --mediumGrey: hsl(216, 12%, 54%);
+    --darkBlue: hsl(213, 19%, 18%);
+    --veryDarkBlue: hsl(216, 12%, 8%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Overpass', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--veryDarkBlue);
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 0 25px;
+    overflow: hidden;
+}
+
+main {
+    width: 416px;
+    height: 416px;
+    background: #1F2630;
+    border-radius: 20px;
+    padding: 27px;
+    transition: all 500ms linear;
+}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #252F39;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+}
+
+.text-area {
+    color: var(--white);
+    margin: 30px 0;
+    padding: 0 5px 0 0;
+}
+
+.text-area h2 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 23px;
+}
+
+.text-area p {
+    color: var(--lightGrey);
+    line-height: 25px;
+}
+
+.rating {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--lightGrey);
+}
+
+.rating p {
+    cursor: pointer;
+}
+
+.rating p.actived {
+    background: var(--mediumGrey);
+    color: white;
+}
+
+.rating p:not(.actived):hover {
+    background: var(--orange);
+    color: white;
+}
+
+button {
+    width: 100%;
+    height: 42px;
+    background: var(--orange);
+    border: none;
+    margin-top: 30px;
+    color: var(--white);
+    border-radius: 30px;
+    cursor: pointer;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+button:hover {
+    background: white;
+    color: var(--orange);
+}
+
+.closedAnimation {
+    /* opacity: 0; */
+    overflow: hidden;
+    /* transform: rotate(calc(1.5 * 360deg)); */
+    animation: fadeOutDown 1s both;
+}
+
+/* Animação de saindo */
+@-webkit-keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+@keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+main.closedAnimation~.request {
+    display: flex;
+}
+
+main:not(.closedAnimation)~.request {
+    display: none;
+}
+
+.request {
+    position: absolute;
+    width: 416px;
+    height: 416px;
+    border-radius: 20px;
+    background: #1F2630;
+    transition: opacity 500ms linear;
+    z-index: 1;
+    padding: 40px;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    animation: fadeInDown 1s both 1s;
+}
+
+.request .img {
+    width: 100%;
+    height: auto;
+    display: grid;
+    place-items: center;
+}
+
+.request .rating-result {
+    background: #262F38;
+    color: var(--orange);
+    height: 32px;
+    width: 192px;
+    text-align: center;
+    padding-top: 8px;
+    border-radius: 20px;
+}
+
+.text-area-result {
+    width: 100%;
+    text-align: center;
+    margin: -20px 0 20px 0;
+}
+
+.request .text-area-result h2 {
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.request .text-area-result p {
+    color: var(--lightGrey);
+}
+
+/* Mobile */
+@media (max-width: 376px) {
+    main, .request {
+        width: 325px;
+        height: 360px;
+    }
+
+    .circle {
+        width: 43px;
+        height: 43px;
+    }
+
+    .request {
+        padding: 27px 27px;
+    }
+
+    .text-area-result {
+        margin: -20px 0 0px 0;
+    }
+
+    p {
+        font-size: 13px;
+    }
+}
